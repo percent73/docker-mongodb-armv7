@@ -5,7 +5,7 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \
     build-essential ca-certificates \
-    python3 python3-pip python3-dev \
+    python3-full python3-dev \
     git \
     cmake \
     curl \
