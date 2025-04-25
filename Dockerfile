@@ -5,7 +5,7 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \
     build-essential ca-certificates \
-    python3-full pipx python3-dev \
+    python3-full python3-pip python3-dev \
     git \
     cmake \
     curl \
@@ -22,7 +22,8 @@ WORKDIR /build
 RUN git clone --depth 1 -b r${MONGO_VERSION} ${MONGO_REPO} .
 
 # 执行构建
-RUN pipx ensurepath && pipx install -r etc/pip/compile-requirements.txt && \
+RUN python3 -m venv buildenv && source buildenv/bin/activate && \
+    python3 -m pip install -r etc/pip/compile-requirements.txt && \
     python3 buildscripts/scons.py DESTDIR=/usr/local install-servers --disable-warnings-as-errors
 
 # 最终镜像（最小化体积）
