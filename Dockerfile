@@ -9,7 +9,7 @@ RUN apt-get update && \
     git \
     cmake \
     curl \
-    libssl-dev \
+    libssl-dev libffi-dev \
     libsasl2-dev libcurl4-openssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
@@ -34,6 +34,12 @@ COPY --from=base /usr/local/bin/mongod /usr/local/bin/
 COPY --from=base /usr/local/bin/mongos /usr/local/bin/
 
 # 配置运行时依赖
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    tini tzdata gosu && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+    
 RUN addgroup -g 1001 -S mongodb && \
     adduser -S -D -H -u 1001 -h /data/db -s /sbin/nologin -G mongodb mongodb && \
     mkdir -p /data/db /data/configdb && \
