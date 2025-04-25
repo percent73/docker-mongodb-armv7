@@ -4,7 +4,7 @@ FROM debian:stable-slim as base
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \
-    build-essential \
+    build-essential ca-certificates \
     python3 \
     git \
     cmake \
