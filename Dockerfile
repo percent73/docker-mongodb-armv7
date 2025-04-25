@@ -9,7 +9,7 @@ RUN apt-get update && \
     git \
     cmake \
     curl \
-    python3.7-dev libssl-dev \
+    libssl-dev \
     libsasl2-dev libcurl4-openssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
