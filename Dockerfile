@@ -12,6 +12,10 @@ RUN apt-get update && \
     libssl-dev libffi-dev \
     libsasl2-dev libcurl4-openssl-dev \
     && rm -rf /var/lib/apt/lists/*
+# 安装rust编译器
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && apt-get install --reinstall libc6-dev -y
+ENV PATH="/root/.cargo/bin:${PATH}"
+ENV CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse
 
 # 配置构建参数（根据架构调整）
 ARG MONGO_VERSION=6.0.22
