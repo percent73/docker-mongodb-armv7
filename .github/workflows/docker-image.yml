@@ -62,7 +62,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            MONGO_VERSION=6.0.22
+            MONGO_VERSION=3.2.22
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
