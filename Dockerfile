@@ -1,10 +1,11 @@
-FROM debian:stable-slim as base
+FROM debian:buster-slim as base
 
 # 安装MongoDB构建依赖
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \
     scons build-essential ca-certificates \
+    python2 \
     git wget \
     libboost-filesystem-dev libboost-program-options-dev libboost-system-dev libboost-thread-dev \
     && rm -rf /var/lib/apt/lists/*
