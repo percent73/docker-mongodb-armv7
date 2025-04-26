@@ -5,7 +5,7 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \
     scons build-essential ca-certificates \
-    git \
+    git wget \
     libboost-filesystem-dev libboost-program-options-dev libboost-system-dev libboost-thread-dev \
     && rm -rf /var/lib/apt/lists/*
 
